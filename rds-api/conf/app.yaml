@@ -1,5 +1,0 @@
-system:
-  bind_address: 192.168.2.170
-  port: 8080
-
-log_conf:

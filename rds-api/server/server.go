@@ -2,12 +2,15 @@ package server
 
 import (
 	"github.com/FixedShadow/jammy-cloud-database/rds-api/global"
+	"github.com/FixedShadow/jammy-cloud-database/rds-api/init/config"
 	"github.com/FixedShadow/jammy-cloud-database/rds-api/init/router"
 	"net"
 	"net/http"
 )
 
 func Start() {
+	config.Init()
+
 	rootRouter := router.Routers()
 	server := &http.Server{
 		Addr:    global.CONF.System.BindAddress + ":" + global.CONF.System.Port,

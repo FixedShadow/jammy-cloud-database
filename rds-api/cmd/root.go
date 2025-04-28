@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/FixedShadow/jammy-cloud-database/rds-api/server"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -11,6 +12,7 @@ var rootCmd = &cobra.Command{
 	Use:   "rds-api",
 	Short: "rds-api",
 	Run: func(cmd *cobra.Command, args []string) {
+		server.Start()
 		return
 	},
 }
@@ -23,5 +25,5 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
 }
