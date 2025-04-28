@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/FixedShadow/jammy-cloud-database/rds-api/global"
 	"github.com/FixedShadow/jammy-cloud-database/rds-api/server"
 	"os"
 
@@ -25,5 +26,5 @@ func Execute() {
 }
 
 func init() {
-
+	rootCmd.PersistentFlags().StringVar(&global.ConfPath, "config", "init/config/app.yaml", "")
 }

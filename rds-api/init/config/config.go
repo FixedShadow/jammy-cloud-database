@@ -8,7 +8,7 @@ import (
 )
 
 func Init() {
-	file, _ := os.Open("init/config/app.yaml")
+	file, _ := os.Open(global.ConfPath)
 	defer file.Close()
 	decoder := yaml.NewDecoder(file)
 	var config conf.ServerConfig
