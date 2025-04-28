@@ -8,11 +8,14 @@ import (
 )
 
 func Init() {
-	file, _ := os.Open(global.ConfPath)
+	file, err := os.Open(global.ConfPath)
+	if err != nil {
+		panic(err)
+	}
 	defer file.Close()
 	decoder := yaml.NewDecoder(file)
 	var config conf.ServerConfig
-	err := decoder.Decode(&config)
+	err = decoder.Decode(&config)
 	if err != nil {
 		panic(err)
 	}
