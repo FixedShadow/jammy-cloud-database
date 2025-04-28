@@ -14,3 +14,7 @@
 - mysql
 - postgresql
 - sqlserver
+-------------------------
+**容器底座：**
+
+本项目使用lxd作为RDS数据库节点容器，相比较传统的虚拟机有更小的开销，同时对比docker及containerd等容器，提供更好的隔离性
