@@ -12,6 +12,6 @@ func (r *BackupRouter) InitRouter(Router *gin.RouterGroup) {
 	baseApi := &v1.BaseApi{}
 	{
 		baseRouter.POST(":projectId/create", baseApi.CreateBackup)
-		baseRouter.POST(":projectId/delete", baseApi.DeleteBackup)
+		baseRouter.DELETE(":projectId/delete", baseApi.DeleteBackup)
 	}
 }
