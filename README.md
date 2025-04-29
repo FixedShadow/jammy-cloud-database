@@ -21,4 +21,4 @@
 
 **数据库实例初始化：**
 
-![流程图](./workflow.png)
+![流程图](./create_workflow.png)
