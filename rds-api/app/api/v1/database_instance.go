@@ -4,7 +4,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (b *BaseApi) CreateDBInstance(c *gin.Context) {}
+func (b *BaseApi) CreateDBInstance(c *gin.Context) {
+	apiServer := new(FrontendApiServer)
+	_ = apiServer
+}
 
 func (b *BaseApi) DeleteDBInstance(c *gin.Context) {}
 
