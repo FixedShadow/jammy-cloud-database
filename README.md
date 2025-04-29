@@ -24,3 +24,6 @@
 - 开发语言：golang
 - 微服务框架：dubbo-go
 - web框架：gin
+
+**初始化流程：**
+![workflow](./workflow.png)

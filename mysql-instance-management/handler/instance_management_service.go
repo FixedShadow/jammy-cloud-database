@@ -7,5 +7,6 @@ type InstanceManagementService struct{}
 
 func (s *InstanceManagementService) CreateDBInstance(ctx context.Context, req *pb.CreateDBInstanceRequest) (res *pb.CreateDBInstanceResponse, err error) {
 	res = new(pb.CreateDBInstanceResponse)
+	res.InstanceId = "666"
 	return res, nil
 }
