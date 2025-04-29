@@ -18,7 +18,7 @@ type DBInstanceSpec struct {
 }
 
 type CreateDBInstanceResult struct {
-	InstanceId string `json:"instanceId"`
+	InstanceId string `json:"instanceId"` //实例id 规则：mysql_uuid(delete "-")
 }
 
 type CreateDBInstanceRes struct {
