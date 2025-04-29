@@ -14,11 +14,6 @@ https://pkg.go.dev/github.com/lxc/lxd/client
 
 var param = lxd.ConnectionArgs{InsecureSkipVerify: true}
 
-func main() {
-	InitBasicParam()
-	CreateVmInstance()
-}
-
 func InitBasicParam() {
 	certContent, err := os.ReadFile("my.crt")
 	if err != nil {
