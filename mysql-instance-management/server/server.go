@@ -2,6 +2,7 @@ package server
 
 import (
 	"dubbo.apache.org/dubbo-go/v3"
+	_ "dubbo.apache.org/dubbo-go/v3/imports"
 	"dubbo.apache.org/dubbo-go/v3/protocol"
 	"dubbo.apache.org/dubbo-go/v3/registry"
 	"github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/global"

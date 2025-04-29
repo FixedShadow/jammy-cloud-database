@@ -4,14 +4,13 @@ import (
 	"context"
 	"fmt"
 	"github.com/FixedShadow/jammy-cloud-database/rds-api/app/dto"
-	"github.com/FixedShadow/jammy-cloud-database/rds-api/global"
 	mysqlinstancemanagement "github.com/FixedShadow/jammy-cloud-database/rds-api/proto/mysql"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
 func (b *BaseApi) CreateDBInstance(c *gin.Context) {
-	var apiServer = global.ApiServer
+	var apiServer = ApiServer
 	req := new(mysqlinstancemanagement.CreateDBInstanceRequest)
 	instanceManagementRes, err := apiServer.MysqlInstanceManagementService.CreateDBInstance(context.Background(), req)
 	if err != nil {

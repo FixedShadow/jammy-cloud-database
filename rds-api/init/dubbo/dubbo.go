@@ -2,10 +2,11 @@ package dubbo
 
 import (
 	"dubbo.apache.org/dubbo-go/v3"
+	_ "dubbo.apache.org/dubbo-go/v3/imports"
 	"dubbo.apache.org/dubbo-go/v3/registry"
+	v1 "github.com/FixedShadow/jammy-cloud-database/rds-api/app/api/v1"
 	"github.com/FixedShadow/jammy-cloud-database/rds-api/global"
 	mysqlinstancemanagement "github.com/FixedShadow/jammy-cloud-database/rds-api/proto/mysql"
-	"github.com/FixedShadow/jammy-cloud-database/rds-api/server"
 )
 
 func Init() {
@@ -24,11 +25,11 @@ func Init() {
 	if err != nil {
 		panic(err)
 	}
-	global.ApiServer = new(server.FrontendApiServer)
+
 	mysqlInstanceManagementService, err := mysqlinstancemanagement.NewMySQLInstanceManagementService(cli)
 	if err != nil {
 		panic(err)
 	}
-	global.ApiServer.MysqlInstanceManagementService = mysqlInstanceManagementService
+	v1.ApiServer.MysqlInstanceManagementService = mysqlInstanceManagementService
 	//init other dubbo service here, like postgresqlInstanceManagementService
 }
