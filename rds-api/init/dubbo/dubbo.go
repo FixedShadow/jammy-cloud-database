@@ -11,10 +11,10 @@ import (
 func Init() {
 	//init dubbo instance
 	ins, err := dubbo.NewInstance(
-		dubbo.WithName("rds-api"),
+		dubbo.WithName(global.CONF.DubboConfig.ClientName),
 		dubbo.WithRegistry(
 			registry.WithZookeeper(),
-			registry.WithAddress("192.168.2.88:2181"),
+			registry.WithAddress(global.CONF.DubboConfig.RegistryAddress),
 		),
 	)
 	if err != nil {

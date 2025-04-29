@@ -2,5 +2,9 @@ system:
   bind_address: 127.0.0.1
   port: 8080
 
+dubbo_config:
+  registry_address: 192.168.2.88:2181
+  client_name: rds-api
+
 log_config:
 
