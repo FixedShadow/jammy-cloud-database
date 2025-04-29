@@ -11,9 +11,9 @@ func (r *InstanceRouter) InitRouter(Router *gin.RouterGroup) {
 	baseRouter := Router.Group("instance")
 	baseApi := &v1.BaseApi{}
 	{
-		baseRouter.POST("/:projectId/create", baseApi.CreateDatabase)
-		baseRouter.DELETE("/:projectId/delete", baseApi.DeleteDatabase)
-		baseRouter.POST("/:projectId/restart", baseApi.RestartDatabase)
-		baseRouter.GET("/:projectId/info", baseApi.GetDatabaseInfo)
+		baseRouter.POST("/:projectId/create", baseApi.CreateDBInstance)
+		baseRouter.DELETE("/:projectId/delete", baseApi.DeleteDBInstance)
+		baseRouter.POST("/:projectId/restart", baseApi.RestartDBInstance)
+		baseRouter.GET("/:projectId/info", baseApi.GetDBInstanceInfo)
 	}
 }

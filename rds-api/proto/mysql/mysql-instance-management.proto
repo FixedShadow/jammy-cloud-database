@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package mysql;
+
+option go_package = "github.com/FixedShadow/jammy-cloud-database/rds-api/proto/mysql;mysqlinstancemanagement";
+
+service MySQLInstanceManagementService {
+  rpc CreateDBInstance(CreateDBInstanceRequest) returns (CreateDBInstanceResponse) {}
+}
+
+
+message CreateDBInstanceRequest {
+  string instance_name = 1;
+  string engine = 2;
+  string engine_version = 3;
+  string instance_class = 4;
+  int32 instance_storage_g_b = 5;
+  string parameter_group = 6;
+  string instance_storage_type = 7;
+  string instance_port = 8;
+  bool storage_encrypted = 9;
+  string instance_type = 10;
+}
+
+message CreateDBInstanceResponse {
+  string instance_id = 1;
+}
+
+//execute at rds-api
+// protoc --go_out=. --go_opt=paths=source_relative --go-triple_out=. --go-triple_opt=paths=source_relative  ./proto/mysql/mysql-instance-management.proto
