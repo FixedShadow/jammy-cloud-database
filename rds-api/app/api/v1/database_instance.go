@@ -1,8 +1,12 @@
 package v1
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+)
 
-func (b *BaseApi) CreateDatabase(c *gin.Context) {}
+func (b *BaseApi) CreateDatabase(c *gin.Context) {
+
+}
 
 func (b *BaseApi) DeleteDatabase(c *gin.Context) {}
 
