@@ -7,7 +7,7 @@ import (
 	"github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/global"
 	"github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/handler"
 	"github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/init/config"
-	mysqlinstancemanagement "github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/proto"
+	instancemanagement "github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/proto"
 	"github.com/dubbogo/gost/log/logger"
 )
 
@@ -32,7 +32,7 @@ func Start() {
 	if err != nil {
 		panic(err)
 	}
-	if err := mysqlinstancemanagement.RegisterMySQLInstanceManagementServiceHandler(srv, &handler.InstanceManagementService{}); err != nil {
+	if err := instancemanagement.RegisterMySQLInstanceManagementServiceHandler(srv, &handler.InstanceManagementService{}); err != nil {
 		panic(err)
 	}
 	if err := srv.Serve(); err != nil {
