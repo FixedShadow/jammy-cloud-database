@@ -26,4 +26,4 @@
 - web框架：gin
 
 **初始化流程：**
-![workflow](./workflow.png)
+![workflow](./workflow.jpg)
