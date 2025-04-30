@@ -1,0 +1,22 @@
+{
+  "db.mysql.s1.micro": {
+    "cpu": 1,
+    "memory": 1
+  },
+  "db.mysql.s1.small": {
+    "cpu": 1,
+    "memory": 2
+  },
+  "db.mysql.s1.medium": {
+    "cpu": 1,
+    "memory": 4
+  },
+  "db.mysql.s1.large": {
+    "cpu": 2,
+    "memory": 8
+  },
+  "db.mysql.s1.xlarge": {
+    "cpu": 4,
+    "memory": 16
+  }
+}

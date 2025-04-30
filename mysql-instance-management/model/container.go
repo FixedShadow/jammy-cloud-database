@@ -1,6 +1,6 @@
 package model
 
-type ContainerSpecs struct {
+type ContainerCreateSpecs struct {
 	ContainerName string `json:"containerName"`
 	ContainerType string `json:"containerType"`
 	CpuNum        int    `json:"cpuNum"`

@@ -11,14 +11,14 @@ import (
 type ContainerService struct{}
 
 type IContainerService interface {
-	CreateContainer(ctx context.Context, containerSpecs model.ContainerSpecs) (*model.ContainerInfo, error)
+	CreateContainer(ctx context.Context, containerSpecs model.ContainerCreateSpecs) (*model.ContainerInfo, error)
 }
 
 func NewContainerService() IContainerService {
 	return &ContainerService{}
 }
 
-func (i *ContainerService) CreateContainer(ctx context.Context, containerSpecs model.ContainerSpecs) (*model.ContainerInfo, error) {
+func (i *ContainerService) CreateContainer(ctx context.Context, containerSpecs model.ContainerCreateSpecs) (*model.ContainerInfo, error) {
 	client, err := container.NewClientWithAuth(global.CONF.ContainerZoneConfig.Address, auth.CertFile, auth.KeyFile)
 	if err != nil {
 		return nil, err
