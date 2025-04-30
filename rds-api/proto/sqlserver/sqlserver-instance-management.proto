@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package mysql;
+package sqlserver;
 
-option go_package = "github.com/FixedShadow/jammy-cloud-database/rds-api/proto/mysql;mysqlinstancemanagement";
+option go_package = "github.com/FixedShadow/jammy-cloud-database/rds-api/proto/sqlserver;sqlserverinstancemanagement";
 
-service MySQLInstanceManagementService {
+service SQLServerInstanceManagementService {
   rpc CreateDBInstance(CreateDBInstanceRequest) returns (CreateDBInstanceResponse) {}
 }
 
@@ -14,7 +14,7 @@ message CreateDBInstanceRequest {
   string engine = 2;
   string engine_version = 3;
   string instance_class = 4;
-  int64 instance_storage_g_b = 5;
+  int32 instance_storage_g_b = 5;
   string parameter_group = 6;
   string instance_storage_type = 7;
   string instance_port = 8;
@@ -27,4 +27,4 @@ message CreateDBInstanceResponse {
 }
 
 //execute at rds-api
-// protoc --go_out=. --go_opt=paths=source_relative --go-triple_out=. --go-triple_opt=paths=source_relative  ./proto/mysql/mysql-instance-management.proto
+// protoc --go_out=. --go_opt=paths=source_relative --go-triple_out=. --go-triple_opt=paths=source_relative  ./proto/sqlserver/sqlserver-instance-management.proto

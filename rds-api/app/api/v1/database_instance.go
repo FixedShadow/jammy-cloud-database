@@ -1,28 +1,32 @@
 package v1
 
 import (
-	"context"
-	"fmt"
+	"github.com/FixedShadow/jammy-cloud-database/rds-api/app/api/v1/helper"
 	"github.com/FixedShadow/jammy-cloud-database/rds-api/app/dto"
-	mysqlinstancemanagement "github.com/FixedShadow/jammy-cloud-database/rds-api/proto/mysql"
+	"github.com/FixedShadow/jammy-cloud-database/rds-api/app/service"
+	"github.com/FixedShadow/jammy-cloud-database/rds-api/constant"
+	"github.com/FixedShadow/jammy-cloud-database/rds-api/global"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 func (b *BaseApi) CreateDBInstance(c *gin.Context) {
-	var apiServer = ApiServer
-	req := new(mysqlinstancemanagement.CreateDBInstanceRequest)
-	instanceManagementRes, err := apiServer.MysqlInstanceManagementService.CreateDBInstance(context.Background(), req)
-	if err != nil {
-		fmt.Println(err.Error())
-		c.JSON(http.StatusInternalServerError, nil)
+	var req dto.DBInstanceSpec
+	if err := c.ShouldBindJSON(&req); err != nil {
+		global.LOG.Error(err)
+		helper.ErrorWithMsg(c, constant.ParamError, constant.ErrTypeInvalidParams)
 		return
 	}
-	res := new(dto.CreateDBInstanceRes)
-	res.Result = dto.CreateDBInstanceResult{
-		InstanceId: instanceManagementRes.InstanceId,
+	instanceService := service.NewInstanceService()
+	switch req.Engine {
+	case "mysql":
+		instanceService.CreateMySQLInstance(c, req)
+	case "sqlserver":
+		instanceService.CreateSQLServerInstance(c, req)
+	case "postgresql":
+		//
+	default:
+		helper.ErrorWithMsg(c, constant.ParamError, constant.ErrTypeInvalidParams)
 	}
-	c.JSON(http.StatusCreated, res)
 }
 
 func (b *BaseApi) DeleteDBInstance(c *gin.Context) {}

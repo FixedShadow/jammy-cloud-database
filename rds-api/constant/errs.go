@@ -13,3 +13,8 @@ var (
 	ErrTypeInternalServer = errors.New("ErrTypeInternalServer")
 	ErrTypeInvalidParams  = errors.New("ErrTypeInvalidParams")
 )
+
+var (
+	ParamError    = "param error"
+	InternalError = "internal error"
+)

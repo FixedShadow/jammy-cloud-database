@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v6.30.2
-// source: proto/mysql/mysql-instance-management.proto
+// source: proto/sqlserver/sqlserver-instance-management.proto
 
-package mysqlinstancemanagement
+package sqlserverinstancemanagement
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -27,7 +27,7 @@ type CreateDBInstanceRequest struct {
 	Engine              string                 `protobuf:"bytes,2,opt,name=engine,proto3" json:"engine,omitempty"`
 	EngineVersion       string                 `protobuf:"bytes,3,opt,name=engine_version,json=engineVersion,proto3" json:"engine_version,omitempty"`
 	InstanceClass       string                 `protobuf:"bytes,4,opt,name=instance_class,json=instanceClass,proto3" json:"instance_class,omitempty"`
-	InstanceStorageGB   int64                  `protobuf:"varint,5,opt,name=instance_storage_g_b,json=instanceStorageGB,proto3" json:"instance_storage_g_b,omitempty"`
+	InstanceStorageGB   int32                  `protobuf:"varint,5,opt,name=instance_storage_g_b,json=instanceStorageGB,proto3" json:"instance_storage_g_b,omitempty"`
 	ParameterGroup      string                 `protobuf:"bytes,6,opt,name=parameter_group,json=parameterGroup,proto3" json:"parameter_group,omitempty"`
 	InstanceStorageType string                 `protobuf:"bytes,7,opt,name=instance_storage_type,json=instanceStorageType,proto3" json:"instance_storage_type,omitempty"`
 	InstancePort        string                 `protobuf:"bytes,8,opt,name=instance_port,json=instancePort,proto3" json:"instance_port,omitempty"`
@@ -39,7 +39,7 @@ type CreateDBInstanceRequest struct {
 
 func (x *CreateDBInstanceRequest) Reset() {
 	*x = CreateDBInstanceRequest{}
-	mi := &file_proto_mysql_mysql_instance_management_proto_msgTypes[0]
+	mi := &file_proto_sqlserver_sqlserver_instance_management_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -51,7 +51,7 @@ func (x *CreateDBInstanceRequest) String() string {
 func (*CreateDBInstanceRequest) ProtoMessage() {}
 
 func (x *CreateDBInstanceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_mysql_mysql_instance_management_proto_msgTypes[0]
+	mi := &file_proto_sqlserver_sqlserver_instance_management_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -64,7 +64,7 @@ func (x *CreateDBInstanceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateDBInstanceRequest.ProtoReflect.Descriptor instead.
 func (*CreateDBInstanceRequest) Descriptor() ([]byte, []int) {
-	return file_proto_mysql_mysql_instance_management_proto_rawDescGZIP(), []int{0}
+	return file_proto_sqlserver_sqlserver_instance_management_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *CreateDBInstanceRequest) GetInstanceName() string {
@@ -95,7 +95,7 @@ func (x *CreateDBInstanceRequest) GetInstanceClass() string {
 	return ""
 }
 
-func (x *CreateDBInstanceRequest) GetInstanceStorageGB() int64 {
+func (x *CreateDBInstanceRequest) GetInstanceStorageGB() int32 {
 	if x != nil {
 		return x.InstanceStorageGB
 	}
@@ -146,7 +146,7 @@ type CreateDBInstanceResponse struct {
 
 func (x *CreateDBInstanceResponse) Reset() {
 	*x = CreateDBInstanceResponse{}
-	mi := &file_proto_mysql_mysql_instance_management_proto_msgTypes[1]
+	mi := &file_proto_sqlserver_sqlserver_instance_management_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -158,7 +158,7 @@ func (x *CreateDBInstanceResponse) String() string {
 func (*CreateDBInstanceResponse) ProtoMessage() {}
 
 func (x *CreateDBInstanceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_mysql_mysql_instance_management_proto_msgTypes[1]
+	mi := &file_proto_sqlserver_sqlserver_instance_management_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -171,7 +171,7 @@ func (x *CreateDBInstanceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateDBInstanceResponse.ProtoReflect.Descriptor instead.
 func (*CreateDBInstanceResponse) Descriptor() ([]byte, []int) {
-	return file_proto_mysql_mysql_instance_management_proto_rawDescGZIP(), []int{1}
+	return file_proto_sqlserver_sqlserver_instance_management_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *CreateDBInstanceResponse) GetInstanceId() string {
@@ -181,17 +181,17 @@ func (x *CreateDBInstanceResponse) GetInstanceId() string {
 	return ""
 }
 
-var File_proto_mysql_mysql_instance_management_proto protoreflect.FileDescriptor
+var File_proto_sqlserver_sqlserver_instance_management_proto protoreflect.FileDescriptor
 
-const file_proto_mysql_mysql_instance_management_proto_rawDesc = "" +
+const file_proto_sqlserver_sqlserver_instance_management_proto_rawDesc = "" +
 	"\n" +
-	"+proto/mysql/mysql-instance-management.proto\x12\x05mysql\"\xa9\x03\n" +
+	"3proto/sqlserver/sqlserver-instance-management.proto\x12\tsqlserver\"\xa9\x03\n" +
 	"\x17CreateDBInstanceRequest\x12#\n" +
 	"\rinstance_name\x18\x01 \x01(\tR\finstanceName\x12\x16\n" +
 	"\x06engine\x18\x02 \x01(\tR\x06engine\x12%\n" +
 	"\x0eengine_version\x18\x03 \x01(\tR\rengineVersion\x12%\n" +
 	"\x0einstance_class\x18\x04 \x01(\tR\rinstanceClass\x12/\n" +
-	"\x14instance_storage_g_b\x18\x05 \x01(\x03R\x11instanceStorageGB\x12'\n" +
+	"\x14instance_storage_g_b\x18\x05 \x01(\x05R\x11instanceStorageGB\x12'\n" +
 	"\x0fparameter_group\x18\x06 \x01(\tR\x0eparameterGroup\x122\n" +
 	"\x15instance_storage_type\x18\a \x01(\tR\x13instanceStorageType\x12#\n" +
 	"\rinstance_port\x18\b \x01(\tR\finstancePort\x12+\n" +
@@ -200,30 +200,30 @@ const file_proto_mysql_mysql_instance_management_proto_rawDesc = "" +
 	" \x01(\tR\finstanceType\";\n" +
 	"\x18CreateDBInstanceResponse\x12\x1f\n" +
 	"\vinstance_id\x18\x01 \x01(\tR\n" +
-	"instanceId2w\n" +
-	"\x1eMySQLInstanceManagementService\x12U\n" +
-	"\x10CreateDBInstance\x12\x1e.mysql.CreateDBInstanceRequest\x1a\x1f.mysql.CreateDBInstanceResponse\"\x00BYZWgithub.com/FixedShadow/jammy-cloud-database/rds-api/proto/mysql;mysqlinstancemanagementb\x06proto3"
+	"instanceId2\x83\x01\n" +
+	"\"SQLServerInstanceManagementService\x12]\n" +
+	"\x10CreateDBInstance\x12\".sqlserver.CreateDBInstanceRequest\x1a#.sqlserver.CreateDBInstanceResponse\"\x00BaZ_github.com/FixedShadow/jammy-cloud-database/rds-api/proto/sqlserver;sqlserverinstancemanagementb\x06proto3"
 
 var (
-	file_proto_mysql_mysql_instance_management_proto_rawDescOnce sync.Once
-	file_proto_mysql_mysql_instance_management_proto_rawDescData []byte
+	file_proto_sqlserver_sqlserver_instance_management_proto_rawDescOnce sync.Once
+	file_proto_sqlserver_sqlserver_instance_management_proto_rawDescData []byte
 )
 
-func file_proto_mysql_mysql_instance_management_proto_rawDescGZIP() []byte {
-	file_proto_mysql_mysql_instance_management_proto_rawDescOnce.Do(func() {
-		file_proto_mysql_mysql_instance_management_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_mysql_mysql_instance_management_proto_rawDesc), len(file_proto_mysql_mysql_instance_management_proto_rawDesc)))
+func file_proto_sqlserver_sqlserver_instance_management_proto_rawDescGZIP() []byte {
+	file_proto_sqlserver_sqlserver_instance_management_proto_rawDescOnce.Do(func() {
+		file_proto_sqlserver_sqlserver_instance_management_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_sqlserver_sqlserver_instance_management_proto_rawDesc), len(file_proto_sqlserver_sqlserver_instance_management_proto_rawDesc)))
 	})
-	return file_proto_mysql_mysql_instance_management_proto_rawDescData
+	return file_proto_sqlserver_sqlserver_instance_management_proto_rawDescData
 }
 
-var file_proto_mysql_mysql_instance_management_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_proto_mysql_mysql_instance_management_proto_goTypes = []any{
-	(*CreateDBInstanceRequest)(nil),  // 0: mysql.CreateDBInstanceRequest
-	(*CreateDBInstanceResponse)(nil), // 1: mysql.CreateDBInstanceResponse
+var file_proto_sqlserver_sqlserver_instance_management_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_proto_sqlserver_sqlserver_instance_management_proto_goTypes = []any{
+	(*CreateDBInstanceRequest)(nil),  // 0: sqlserver.CreateDBInstanceRequest
+	(*CreateDBInstanceResponse)(nil), // 1: sqlserver.CreateDBInstanceResponse
 }
-var file_proto_mysql_mysql_instance_management_proto_depIdxs = []int32{
-	0, // 0: mysql.MySQLInstanceManagementService.CreateDBInstance:input_type -> mysql.CreateDBInstanceRequest
-	1, // 1: mysql.MySQLInstanceManagementService.CreateDBInstance:output_type -> mysql.CreateDBInstanceResponse
+var file_proto_sqlserver_sqlserver_instance_management_proto_depIdxs = []int32{
+	0, // 0: sqlserver.SQLServerInstanceManagementService.CreateDBInstance:input_type -> sqlserver.CreateDBInstanceRequest
+	1, // 1: sqlserver.SQLServerInstanceManagementService.CreateDBInstance:output_type -> sqlserver.CreateDBInstanceResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -231,26 +231,26 @@ var file_proto_mysql_mysql_instance_management_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_proto_mysql_mysql_instance_management_proto_init() }
-func file_proto_mysql_mysql_instance_management_proto_init() {
-	if File_proto_mysql_mysql_instance_management_proto != nil {
+func init() { file_proto_sqlserver_sqlserver_instance_management_proto_init() }
+func file_proto_sqlserver_sqlserver_instance_management_proto_init() {
+	if File_proto_sqlserver_sqlserver_instance_management_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_mysql_mysql_instance_management_proto_rawDesc), len(file_proto_mysql_mysql_instance_management_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_sqlserver_sqlserver_instance_management_proto_rawDesc), len(file_proto_sqlserver_sqlserver_instance_management_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_proto_mysql_mysql_instance_management_proto_goTypes,
-		DependencyIndexes: file_proto_mysql_mysql_instance_management_proto_depIdxs,
-		MessageInfos:      file_proto_mysql_mysql_instance_management_proto_msgTypes,
+		GoTypes:           file_proto_sqlserver_sqlserver_instance_management_proto_goTypes,
+		DependencyIndexes: file_proto_sqlserver_sqlserver_instance_management_proto_depIdxs,
+		MessageInfos:      file_proto_sqlserver_sqlserver_instance_management_proto_msgTypes,
 	}.Build()
-	File_proto_mysql_mysql_instance_management_proto = out.File
-	file_proto_mysql_mysql_instance_management_proto_goTypes = nil
-	file_proto_mysql_mysql_instance_management_proto_depIdxs = nil
+	File_proto_sqlserver_sqlserver_instance_management_proto = out.File
+	file_proto_sqlserver_sqlserver_instance_management_proto_goTypes = nil
+	file_proto_sqlserver_sqlserver_instance_management_proto_depIdxs = nil
 }

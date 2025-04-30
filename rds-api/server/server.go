@@ -4,6 +4,7 @@ import (
 	"github.com/FixedShadow/jammy-cloud-database/rds-api/global"
 	"github.com/FixedShadow/jammy-cloud-database/rds-api/init/config"
 	"github.com/FixedShadow/jammy-cloud-database/rds-api/init/dubbo"
+	"github.com/FixedShadow/jammy-cloud-database/rds-api/init/log"
 	"github.com/FixedShadow/jammy-cloud-database/rds-api/init/router"
 	pb "github.com/FixedShadow/jammy-cloud-database/rds-api/proto/mysql"
 	"net"
@@ -18,6 +19,7 @@ type FrontendApiServer struct {
 
 func Start() {
 	config.Init()
+	log.Init()
 	dubbo.Init()
 	rootRouter := router.Routers()
 	server := &http.Server{

@@ -8,16 +8,15 @@ import (
 	"net/http"
 )
 
-func ErrorWithDetail(ctx *gin.Context, code int, msg string, err error) {
+func ErrorWithMsg(ctx *gin.Context, msg string, err error) {
 	res := dto.Response{
-		Code:    code,
 		Message: msg,
 	}
 	switch {
 	case errors.Is(err, constant.ErrTypeInvalidParams):
-		res.Message = "param error"
-	case errors.Is(err, constant.ErrTypeInternalServer):
-		res.Message = "internal error"
+		res.Code = constant.CodeErrBadRequest
+	default:
+		res.Code = constant.CodeErrInternalServer
 	}
 	ctx.JSON(http.StatusOK, res)
 	ctx.Abort()
