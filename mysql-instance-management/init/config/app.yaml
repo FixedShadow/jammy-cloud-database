@@ -8,4 +8,7 @@ registry:
   address: 192.168.2.88
   port: 2181
 
+container_zone_config:
+  address: https://192.168.2.99:8443
+
 log_config:
