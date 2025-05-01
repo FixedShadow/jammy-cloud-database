@@ -3,6 +3,7 @@ package handler
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	constant "github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/const"
 	"github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/global"
 	"github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/model"
@@ -16,7 +17,7 @@ type InstanceManagementService struct{}
 
 func (s *InstanceManagementService) CreateDBInstance(ctx context.Context, req *pb.CreateDBInstanceRequest) (res *pb.CreateDBInstanceResponse, err error) {
 	containerCreateSpecs := model.ContainerCreateSpecs{}
-	containerCreateSpecs.ContainerName = constant.IMAGE_TYPE_MYSQL + "_" + common.GenerateRandomStringLess32(10)
+	containerCreateSpecs.ContainerName = constant.IMAGE_TYPE_MYSQL + "-" + common.GenerateRandomStringLess32(10)
 	containerTemplate := map[string]map[string]int{}
 	err = json.Unmarshal(constant.ContainerTemplate, &containerTemplate)
 	if err != nil {
@@ -32,18 +33,23 @@ func (s *InstanceManagementService) CreateDBInstance(ctx context.Context, req *p
 	/**
 	It takes a lot of time to initialize the instance, so we use the async task.
 	*/
-	ctx, cancel := context.WithTimeout(ctx, time.Second*time.Duration(global.CONF.ContainerZoneConfig.Timeout))
-
+	ctx2, cancel := context.WithTimeout(ctx, time.Second*time.Duration(global.CONF.ContainerZoneConfig.Timeout))
 	go func(ctx context.Context) {
 		defer cancel()
 		containerInfo, err := service.NewContainerService().CreateContainer(ctx, containerCreateSpecs)
 		if err != nil {
+			//TODO add log here
+			fmt.Println("create container: ", err.Error())
 			return
 		}
 		err = service.NewContainerService().StartContainer(ctx, containerInfo)
 		if err != nil {
+			fmt.Println("start container: ", err.Error())
+			//TODO add log here.
 			return
 		}
-	}(ctx)
+	}(ctx2)
+	res = new(pb.CreateDBInstanceResponse)
+	res.InstanceId = containerCreateSpecs.ContainerName
 	return res, nil
 }

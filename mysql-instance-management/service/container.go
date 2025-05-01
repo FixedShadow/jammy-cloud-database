@@ -28,7 +28,7 @@ func (i *ContainerService) CreateContainer(ctx context.Context, containerSpecs m
 		return nil, err
 	}
 	instance := api.InstancesPost{}
-	instance.InstanceType = containerSpecs.ContainerType
+	instance.Type = api.InstanceType(containerSpecs.ContainerType)
 	instance.Name = containerSpecs.ContainerName
 	instance.Config = map[string]string{}
 	instance.Config["limits.cpu"] = strconv.Itoa(containerSpecs.CpuNum)
