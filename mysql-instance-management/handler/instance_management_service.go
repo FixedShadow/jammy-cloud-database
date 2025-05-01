@@ -14,6 +14,7 @@ type InstanceManagementService struct{}
 
 func (s *InstanceManagementService) CreateDBInstance(ctx context.Context, req *pb.CreateDBInstanceRequest) (res *pb.CreateDBInstanceResponse, err error) {
 	containerCreateSpecs := model.ContainerCreateSpecs{}
+	containerCreateSpecs.ContainerName = constant.IMAGE_TYPE_MYSQL + "_" + common.GenerateRandomStringLess32(10)
 	containerTemplate := map[string]map[string]int{}
 	_ = json.Unmarshal(constant.ContainerTemplate, &containerTemplate)
 	containerCreateSpecs.CpuNum = containerTemplate[req.InstanceClass]["cpu"]
@@ -21,10 +22,13 @@ func (s *InstanceManagementService) CreateDBInstance(ctx context.Context, req *p
 	containerCreateSpecs.DiskSize = int(req.InstanceStorageGB)
 	containerCreateSpecs.ContainerType = constant.DEFAULT_CONTAINER_TYPE
 	//log here.
-	containerCreateSpecs.ContainerName = constant.IMAGE_TYPE_MYSQL + "_" + common.GenerateRandomStringLess32(10)
 	containerCreateSpecs.ImageType = req.Engine + req.EngineVersion
 	containerCreateSpecs.ImageId = service.NewImageService().GetImageIdByType(containerCreateSpecs.ImageType)
-	containerInfo, err := service.NewContainerService().CreateContainer(ctx, containerCreateSpecs)
-	_ = containerInfo
+	/**
+	It takes a lot of time to initialize the instance, so we use the async task.
+	*/
+	go func() {
+		_, _ = service.NewContainerService().CreateContainer(ctx, containerCreateSpecs)
+	}()
 	return res, nil
 }

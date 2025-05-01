@@ -51,16 +51,6 @@ func (i *ContainerService) CreateContainer(ctx context.Context, containerSpecs m
 	}
 	//wait for the operation to complete.
 	err = op.WaitContext(ctx)
-	//start the vm
-	state := api.InstanceStatePut{
-		Action:  constant.ACTION_START,
-		Timeout: -1,
-	}
-	op, err = client.UpdateInstanceState(instance.Name, state, "")
-	if err != nil {
-		return nil, err
-	}
-	err = op.WaitContext(ctx)
 	if err != nil {
 		return nil, err
 	}
@@ -68,4 +58,25 @@ func (i *ContainerService) CreateContainer(ctx context.Context, containerSpecs m
 	containerInfo.ContainerName = instance.Name
 	//TODO add another info.
 	return &containerInfo, err
+}
+
+func StartContainer(ctx context.Context, containerInfo *model.ContainerInfo) error {
+	client, err := container.NewClientWithAuth(global.CONF.ContainerZoneConfig.Address, auth.CertFile, auth.KeyFile)
+	if err != nil {
+		return err
+	}
+	state := api.InstanceStatePut{
+		Action:  constant.ACTION_START,
+		Timeout: -1,
+	}
+	op, err := client.UpdateInstanceState(containerInfo.ContainerName, state, "")
+	if err != nil {
+		return err
+	}
+	err = op.WaitContext(ctx)
+	if err != nil {
+		return err
+	}
+	//TODO add another info to containerInfo.
+	return nil
 }

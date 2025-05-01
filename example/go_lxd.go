@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	lxd "github.com/canonical/lxd/client"
 	"github.com/canonical/lxd/shared/api"
@@ -28,12 +29,12 @@ func InitBasicParam() {
 }
 
 func CreateVmInstance() {
-	instanceServer, err := lxd.ConnectLXD("https://x.x.x.x:8443", &param)
+	instanceServer, err := lxd.ConnectLXD("https://192.168.2.99:8443", &param)
 	if err != nil {
 		panic(err)
 	}
 	instance := api.InstancesPost{}
-	instance.Name = "my-vm-001"
+	instance.Name = "my-vm-100"
 	instance.Type = "virtual-machine"
 	instance.Devices = map[string]map[string]string{
 		"root": {
@@ -49,8 +50,8 @@ func CreateVmInstance() {
 	}
 	instance.Source = api.InstanceSource{
 		Type:        "image",
-		BaseImage:   "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", //image fingerprint
-		Fingerprint: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", //image fingerprint
+		BaseImage:   "67c922efe9030a23c57dd86eccd0dfef03e54565126e79f88bb8cd9b34ecd992", //image fingerprint
+		Fingerprint: "67c922efe9030a23c57dd86eccd0dfef03e54565126e79f88bb8cd9b34ecd992", //image fingerprint
 	}
 	op, err := instanceServer.CreateInstance(instance)
 	if err != nil {
@@ -60,20 +61,20 @@ func CreateVmInstance() {
 	fmt.Println("operation status code: ", op.Get().StatusCode.String())
 	fmt.Println("operation err: ", op.Get().Err)
 
-	err = op.Wait() //wait for the operation to complete
+	err = op.WaitContext(context.Background()) //wait for the operation to complete
 	if err != nil {
 		panic(err)
 	}
-	state := api.InstanceStatePut{
-		Action:  "start",
-		Timeout: -1,
-	}
-	op, err = instanceServer.UpdateInstanceState(instance.Name, state, "")
-	if err != nil {
-		panic(err)
-	}
-	err = op.Wait() //wait for the operation to complete.
-	if err != nil {
-		panic(err)
-	}
+	//state := api.InstanceStatePut{
+	//	Action:  "start",
+	//	Timeout: -1,
+	//}
+	//op, err = instanceServer.UpdateInstanceState(instance.Name, state, "")
+	//if err != nil {
+	//	panic(err)
+	//}
+	//err = op.Wait() //wait for the operation to complete.
+	//if err != nil {
+	//	panic(err)
+	//}
 }
