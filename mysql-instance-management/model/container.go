@@ -5,8 +5,9 @@ type ContainerCreateSpecs struct {
 	ContainerType string `json:"containerType"`
 	CpuNum        int    `json:"cpuNum"`
 	Memory        int    `json:"memory"`
-	Disk          int    `json:"disk"`
+	DiskSize      int    `json:"diskSize"`
 	ImageId       string `json:"imageId"`
+	ImageType     string `json:"imageType"`
 	Type          string `json:"type"`
 }
 

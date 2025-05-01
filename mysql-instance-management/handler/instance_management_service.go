@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	constant "github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/const"
 	"github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/model"
+	"github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/service"
 )
 import pb "github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/proto"
 
@@ -16,5 +17,7 @@ func (s *InstanceManagementService) CreateDBInstance(ctx context.Context, req *p
 	_ = json.Unmarshal(constant.ContainerTemplate, &containerTemplate)
 	containerCreateSpecs.CpuNum = containerTemplate[req.InstanceClass]["cpu"]
 	containerCreateSpecs.Memory = containerTemplate[req.InstanceClass]["memory"]
+	containerInfo, err := service.NewContainerService().CreateContainer(ctx, containerCreateSpecs)
+	_ = containerInfo
 	return res, nil
 }
