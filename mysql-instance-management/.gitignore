@@ -18,6 +18,3 @@ output/
 manifest/output/
 temp/
 *.exe
-
-auth/*.crt
-auth/*.key
