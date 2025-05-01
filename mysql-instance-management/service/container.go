@@ -15,6 +15,7 @@ type ContainerService struct{}
 
 type IContainerService interface {
 	CreateContainer(ctx context.Context, containerSpecs model.ContainerCreateSpecs) (*model.ContainerInfo, error)
+	StartContainer(ctx context.Context, containerInfo *model.ContainerInfo) error
 }
 
 func NewContainerService() IContainerService {
@@ -56,11 +57,10 @@ func (i *ContainerService) CreateContainer(ctx context.Context, containerSpecs m
 	}
 	containerInfo := model.ContainerInfo{}
 	containerInfo.ContainerName = instance.Name
-	//TODO add another info.
 	return &containerInfo, err
 }
 
-func StartContainer(ctx context.Context, containerInfo *model.ContainerInfo) error {
+func (i *ContainerService) StartContainer(ctx context.Context, containerInfo *model.ContainerInfo) error {
 	client, err := container.NewClientWithAuth(global.CONF.ContainerZoneConfig.Address, auth.CertFile, auth.KeyFile)
 	if err != nil {
 		return err
