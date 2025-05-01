@@ -13,3 +13,7 @@ const MYSQL_SIZE_S1_XLARGE = "db.mysql.s1.xlarge"
 const GB = "GiB"
 
 const ACTION_START = "start"
+
+const IMAGE_TYPE_MYSQL = "mysql"
+
+const DEFAULT_CONTAINER_TYPE = "virtual-machine"

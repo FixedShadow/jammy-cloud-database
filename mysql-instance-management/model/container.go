@@ -2,13 +2,12 @@ package model
 
 type ContainerCreateSpecs struct {
 	ContainerName string `json:"containerName"`
-	ContainerType string `json:"containerType"`
+	ContainerType string `json:"containerType"` //virtual-machine
 	CpuNum        int    `json:"cpuNum"`
 	Memory        int    `json:"memory"`
 	DiskSize      int    `json:"diskSize"`
 	ImageId       string `json:"imageId"`
-	ImageType     string `json:"imageType"`
-	Type          string `json:"type"`
+	ImageType     string `json:"imageType"` //mysql5.7 mysql8.0  sqlserverx.x postgresqlx.x
 }
 
 type ContainerInfo struct {

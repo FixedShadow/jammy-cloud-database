@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 	"github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/auth"
-	constant "github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/const"
+	"github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/const"
 	"github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/global"
 	"github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/model"
 	"github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/utils/container"
@@ -27,7 +27,7 @@ func (i *ContainerService) CreateContainer(ctx context.Context, containerSpecs m
 		return nil, err
 	}
 	instance := api.InstancesPost{}
-	instance.InstanceType = containerSpecs.Type
+	instance.InstanceType = containerSpecs.ContainerType
 	instance.Name = containerSpecs.ContainerName
 	instance.Config = map[string]string{}
 	instance.Config["limits.cpu"] = strconv.Itoa(containerSpecs.CpuNum)
