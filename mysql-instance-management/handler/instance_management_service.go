@@ -33,7 +33,7 @@ func (s *InstanceManagementService) CreateDBInstance(ctx context.Context, req *p
 	/**
 	It takes a lot of time to initialize the instance, so we use the async task.
 	*/
-	ctx2, cancel := context.WithTimeout(ctx, time.Second*time.Duration(global.CONF.ContainerZoneConfig.Timeout))
+	ctx2, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(global.CONF.ContainerZoneConfig.Timeout))
 	go func(ctx context.Context) {
 		defer cancel()
 		containerInfo, err := service.NewContainerService().CreateContainer(ctx, containerCreateSpecs)
