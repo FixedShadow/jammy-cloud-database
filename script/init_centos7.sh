@@ -29,7 +29,19 @@ function init_yum() {
 }
 
 function install_go_env() {
-    
+    echo "Start installing golang..."
+    cd /home
+    wget https://mirrors.aliyun.com/golang/go1.23.8.linux-amd64.tar.gz
+    tar -zxvf /home/go1.23.8.linux-amd64.tar.gz
+    mv /home/go /usr/local/go
+    echo -e "\nexport PATH=\$PATH:/usr/local/go/bin\n" >> /etc/profile
+    echo -e "export GOPATH=/opt/gopath\n" >> /etc/profile
+    echo -e "export PATH=\$GOPATH/bin:\$PATH\n" >> /etc/profile
+    source /etc/profile
+    go env -w GO111MODULE=on
+    go env -w GOPROXY='https://goproxy.cn,direct'
+    go env
+    echo "The Golang development environment is installed!"
 }
 
 function install_java_env() {
