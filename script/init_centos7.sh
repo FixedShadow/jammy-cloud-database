@@ -34,14 +34,15 @@ function install_go_env() {
     wget https://mirrors.aliyun.com/golang/go1.23.8.linux-amd64.tar.gz
     tar -zxvf /home/go1.23.8.linux-amd64.tar.gz
     mv /home/go /usr/local/go
-    echo -e "\nexport PATH=\$PATH:/usr/local/go/bin\n" >> /etc/profile
-    echo -e "export GOPATH=/opt/gopath\n" >> /etc/profile
-    echo -e "export PATH=\$GOPATH/bin:\$PATH\n" >> /etc/profile
+    echo -e "\nexport PATH=\$PATH:/usr/local/go/bin" >> /etc/profile
+    echo -e "export GOPATH=/opt/gopath" >> /etc/profile
+    echo -e "export PATH=\$GOPATH/bin:\$PATH" >> /etc/profile
     source /etc/profile
     go env -w GO111MODULE=on
     go env -w GOPROXY='https://goproxy.cn,direct'
     go env
     echo "The Golang development environment is installed!"
+    echo "Please manually execute 'source /etc/profile' to update the environment variables!"
 }
 
 function install_java_env() {
