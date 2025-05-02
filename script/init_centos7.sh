@@ -42,20 +42,9 @@ function install_go_env() {
     go env -w GOPROXY='https://goproxy.cn,direct'
     go env
     echo "The Golang development environment is installed!"
-    echo "Please manually execute 'source /etc/profile' to update the environment variables!"
+    echo "Please manually execute \'source /etc/profile\' to update the environment variables!"
 }
 
-function install_java_env() {
-
-}
-
-function install_py3_env() {
-
-}
-
-function setup_cron() {
-
-}
 
 if [ $# -eq 1 ];then
   echo "ip address: $1"
@@ -67,6 +56,3 @@ fi
 init_network $1
 init_yum
 
-#install_go_env
-#install_java_env
-#install_py3_env
