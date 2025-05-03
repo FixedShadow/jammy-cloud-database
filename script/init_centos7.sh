@@ -42,7 +42,7 @@ function install_go_env() {
     go env -w GOPROXY='https://goproxy.cn,direct'
     go env
     echo "The Golang development environment is installed!"
-    echo "Please manually execute \'source /etc/profile\' to update the environment variables!"
+    echo "Please manually execute 'source /etc/profile' to update the environment variables!"
 }
 
 
