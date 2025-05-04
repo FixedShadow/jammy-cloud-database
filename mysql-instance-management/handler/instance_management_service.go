@@ -3,7 +3,6 @@ package handler
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	constant "github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/const"
 	"github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/global"
 	"github.com/FixedShadow/jammy-cloud-database/mysql-instance-management/model"
@@ -38,14 +37,12 @@ func (s *InstanceManagementService) CreateDBInstance(ctx context.Context, req *p
 		defer cancel()
 		containerInfo, err := service.NewContainerService().CreateContainer(ctx, containerCreateSpecs)
 		if err != nil {
-			//TODO add log here
-			fmt.Println("create container: ", err.Error())
+			global.LOG.Error("create container error: ", err.Error())
 			return
 		}
 		err = service.NewContainerService().StartContainer(ctx, containerInfo)
 		if err != nil {
-			fmt.Println("start container: ", err.Error())
-			//TODO add log here.
+			global.LOG.Error("start container error: ", err.Error())
 			return
 		}
 	}(ctx2)
