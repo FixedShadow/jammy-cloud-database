@@ -5,9 +5,14 @@ import (
 	"go.uber.org/zap"
 	"os"
 	"path/filepath"
+	"time"
 )
 
 var workingPath string
+
+func GetCurrTSInNano() int64 {
+	return time.Now().UnixNano()
+}
 
 func GetWorkingPath() string {
 	var err error
