@@ -6,8 +6,6 @@ import (
 	"strings"
 )
 
-type ContextKey string
-
 func UUID() string {
 	return uuid.New().String()
 }
@@ -18,12 +16,11 @@ func Generate32RandomString() string {
 }
 
 func WithTraceId(ctx context.Context, traceId string) context.Context {
-	return context.WithValue(ctx, ContextKey("trace-id"), traceId)
+	return context.WithValue(ctx, "trace-id", traceId)
 }
 
 func TraceId(ctx context.Context) string {
-	v := ctx.Value(ContextKey("trace-id"))
+	v := ctx.Value("trace-id")
 	traceId, _ := v.(string)
 	return traceId
 }
-

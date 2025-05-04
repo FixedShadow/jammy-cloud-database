@@ -33,16 +33,19 @@ func (s *InstanceManagementService) CreateDBInstance(ctx context.Context, req *p
 	It takes a lot of time to initialize the instance, so we use the async task.
 	*/
 	ctx2, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(global.CONF.ContainerZoneConfig.Timeout))
+	global.LOG.Infof("projectId: %s start to create instance, traceId: %s", common.ProjectId(ctx), common.TraceId(ctx))
+	ctx2 = common.WithProjectId(ctx2, common.ProjectId(ctx))
+	ctx2 = common.WithTraceId(ctx2, common.TraceId(ctx))
 	go func(ctx context.Context) {
 		defer cancel()
 		containerInfo, err := service.NewContainerService().CreateContainer(ctx, containerCreateSpecs)
 		if err != nil {
-			global.LOG.Error("create container error: ", err.Error())
+			global.LOG.Errorf("projectId: %s, traceId: %s create container error: %s", common.ProjectId(ctx2), common.TraceId(ctx2), err.Error())
 			return
 		}
 		err = service.NewContainerService().StartContainer(ctx, containerInfo)
 		if err != nil {
-			global.LOG.Error("start container error: ", err.Error())
+			global.LOG.Errorf("projectId: %s, traceId: %s start container error: %s", common.ProjectId(ctx2), common.TraceId(ctx2), err.Error())
 			return
 		}
 	}(ctx2)
