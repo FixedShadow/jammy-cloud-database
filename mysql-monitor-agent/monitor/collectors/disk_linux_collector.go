@@ -72,7 +72,7 @@ func (d *DiskCollector) Collect(collectTime int64) *model.InputMetric {
 
 func getDeltaTime(current, prior *DiskIOCountersStat) float64 {
 	var deltaTime = float64(config.DefaultMetricDeltaDataTimeInSecond)
-	collectDeltaTime := float64(current.collectTime-prior.collectTime) / 1000
+	collectDeltaTime := float64(current.collectTime-prior.collectTime) / 1000000000
 	if current.uptimeInSeconds != -1 && prior.uptimeInSeconds != -1 {
 		deltaTime = float64(current.uptimeInSeconds - prior.uptimeInSeconds)
 	} else if collectDeltaTime > 0 {
