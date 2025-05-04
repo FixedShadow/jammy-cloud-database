@@ -25,7 +25,12 @@ var startCmd = &cobra.Command{
 			logs.GetLogger().Warn("Start failed: mysqlMonitorAgent was started in before.", zap.Int("PID", os.Getpid()))
 			return
 		}
-		//TODO register service here.
+
+		sManager := manager.NewServiceManager()
+		sManager.RegisterService()
+		sManager.InitService()
+		sManager.StartService()
+
 		fmt.Println("Mysql-Monitor-Agent runs successfully.")
 		logs.GetLogger().Info("mysqlMonitorAgent runs successfully")
 		utils.StartDaemon()
