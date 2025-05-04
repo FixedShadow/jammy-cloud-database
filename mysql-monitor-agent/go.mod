@@ -4,6 +4,8 @@ go 1.23.8
 
 require (
 	github.com/natefinch/lumberjack v2.0.0+incompatible
+	github.com/nightlyone/lockfile v1.0.0
+	github.com/pkg/errors v0.9.1
 	github.com/spf13/cobra v1.9.1
 	go.uber.org/zap v1.27.0
 )

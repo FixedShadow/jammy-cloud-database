@@ -1,0 +1,16 @@
+[Unit]
+Description=mysql-monitor-agent
+
+[Service]
+Type=simple
+ExecStart=/usr/local/mysql-monitor-agent/mysql-monitor-agent start
+
+Restart=on-failure
+RestartSec=60s
+
+KillMode=process
+MemoryLimit=100M
+CPUShares=40
+
+[Install]
+WantedBy=multi-user.target
