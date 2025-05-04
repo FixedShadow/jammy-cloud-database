@@ -1,0 +1,7 @@
+{
+  "LogLevel": "INFO",
+  "LogDir": "/var/log/mysql-monitor-agent",
+  "SingleFileMaxSizeMB": 20,
+  "MaxBackups": 5,
+  "LogsKeepDay": 7
+}
