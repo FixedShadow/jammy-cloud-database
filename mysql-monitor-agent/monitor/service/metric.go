@@ -9,6 +9,7 @@ import (
 	"github.com/FixedShadow/jammy-cloud-database/mysql-monitor-agent/monitor/report"
 	"github.com/FixedShadow/jammy-cloud-database/mysql-monitor-agent/utils"
 	"go.uber.org/zap"
+	"strings"
 	"time"
 )
 
@@ -43,10 +44,11 @@ func collectMetricData() *model.InputMetric {
 			metricDatas = append(metricDatas, collectedData.Data...)
 		}
 	}
+	HostName = strings.ReplaceAll(HostName, "\n", "")
 	data := &model.InputMetric{
 		CollectTime: now,
 		Data:        metricDatas,
-		HostName:    HostName[:len(HostName)-1],
+		HostName:    HostName,
 	}
 	return data
 }
