@@ -46,4 +46,5 @@
 - 慢查询（查询时间超过long_qurey_time秒的查询个数）
 
 **mysql-monitor-agent 上报指标效果展示：**
+
 ![指标截图](./kafka-metric.png)
