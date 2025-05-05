@@ -14,10 +14,22 @@ var (
 	DefaultMetricDeltaDataTimeInSecond = utils.CronJobTimeSecond
 )
 
+type Storage struct {
+	KernelBucket    string `json:"kernel_bucket"`
+	AgentBucket     string `json:"agent_bucket"`
+	AccessKeyId     string `json:"access_key_id"`
+	SecretAccessKey string `json:"secret_access_key"`
+	KernelTarFile   string `json:"kernel_tar_file"`
+	AgentTarFile    string `json:"agent_tar_file"`
+	DownloadPath    string `json:"download_path"`
+}
+
 type MonitorConfig struct {
-	Net   string
-	Url   string
-	Topic string
+	Net      string  `json:"net"`
+	Url      string  `json:"url"`
+	Topic    string  `json:"topic"`
+	Endpoint string  `json:"endpoint"`
+	Storage  Storage `json:"storage"`
 }
 
 func loadConfig(confName string, conf interface{}) (interface{}, error) {

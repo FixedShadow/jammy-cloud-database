@@ -1,5 +1,15 @@
 {
   "url": "192.168.2.88:9092",
   "topic": "mysql_monitor_agent",
-  "net": "tcp"
+  "net": "tcp",
+  "storage": {
+    "endpoint": "192.168.2.88:9800",
+    "kernel_bucket": "kernel",
+    "agent_bucket": "agent",
+    "access_key_id": "uwWGI0XA31EOlvSj0WPr",
+    "secret_access_key": "3TaQkYpaJ5S7WalRnbyu8krLwXmVhABuCWYGdIC2",
+    "kernel_tar_file": "mysql-5.7.20-linux-glibc2.12-x86_64.tar.gz",
+    "agent_tar_file": "",
+    "download_path": "/opt/mysql-5.7.20-linux-glibc2.12-x86_64.tar.gz"
+  }
 }
