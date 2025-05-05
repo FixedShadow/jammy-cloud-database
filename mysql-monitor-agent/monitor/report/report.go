@@ -6,10 +6,13 @@ import (
 	"github.com/FixedShadow/jammy-cloud-database/mysql-monitor-agent/logs"
 	"github.com/FixedShadow/jammy-cloud-database/mysql-monitor-agent/monitor/config"
 	"github.com/FixedShadow/jammy-cloud-database/mysql-monitor-agent/monitor/model"
+	"github.com/FixedShadow/jammy-cloud-database/mysql-monitor-agent/utils"
 	"go.uber.org/zap"
 )
 
 var DefaultInstance = NewInstance()
+
+var HostName, _ = utils.Exec("hostname")
 
 func SendMetricData(data *model.InputMetric) {
 	topic := config.GetMonitorConfig().Topic + getVirtualMachineName()
@@ -34,5 +37,5 @@ func SendMetricData(data *model.InputMetric) {
 }
 
 func getVirtualMachineName() string {
-	return "mysql-888"
+	return HostName
 }
