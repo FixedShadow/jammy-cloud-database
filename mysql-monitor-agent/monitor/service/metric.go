@@ -46,7 +46,7 @@ func collectMetricData() *model.InputMetric {
 	data := &model.InputMetric{
 		CollectTime: now,
 		Data:        metricDatas,
-		HostName:    HostName,
+		HostName:    HostName[:len(HostName)-1],
 	}
 	return data
 }
