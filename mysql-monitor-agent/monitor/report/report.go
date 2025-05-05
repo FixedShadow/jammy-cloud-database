@@ -41,5 +41,5 @@ func getVirtualMachineName() string {
 		logs.GetLogger().Error("exec shell cmd error", zap.Error(err))
 		return "default_host_name"
 	}
-	return strings.ReplaceAll(hostname, "-", "_")
+	return strings.ReplaceAll(hostname, "-", "")
 }
