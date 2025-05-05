@@ -12,7 +12,7 @@ import (
 var DefaultInstance = NewInstance()
 
 func SendMetricData(data *model.InputMetric) {
-	topic := config.GetMonitorConfig().Topic + getVirtualMachineName()
+	topic := config.GetMonitorConfig().Topic
 	net := config.GetMonitorConfig().Net
 	url := config.GetMonitorConfig().Url
 	message, err := json.Marshal(data)
@@ -31,14 +31,4 @@ func SendMetricData(data *model.InputMetric) {
 		return
 	}
 	_ = DefaultInstance.Close()
-}
-
-func getVirtualMachineName() string {
-	//hostname, err := utils.Exec("hostname")
-	//if err != nil {
-	//	logs.GetLogger().Error("exec shell cmd error", zap.Error(err))
-	//	return "defaultHostName"
-	//}
-	//return strings.ReplaceAll(hostname, "-", "")
-	return "mysql666"
 }

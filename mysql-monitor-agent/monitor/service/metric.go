@@ -18,6 +18,8 @@ var collectorList = []collectors.CollectorInterface{
 	&collectors.DiskCollector{},
 }
 
+var HostName, _ = utils.Exec("hostname")
+
 // CollectToServer start collect task
 func CollectToServer() {
 	ticker := time.NewTicker(time.Duration(config.DefaultMetricDeltaDataTimeInSecond) * time.Second)
@@ -44,6 +46,7 @@ func collectMetricData() *model.InputMetric {
 	data := &model.InputMetric{
 		CollectTime: now,
 		Data:        metricDatas,
+		HostName:    HostName,
 	}
 	return data
 }

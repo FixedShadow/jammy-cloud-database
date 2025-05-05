@@ -25,4 +25,5 @@ type InputMetric struct {
 	CollectTime int64    `json:"collect_time"`
 	Type        string   `json:"-"`
 	Data        []Metric `json:"data"`
+	HostName    string   `json:"host_name"`
 }
