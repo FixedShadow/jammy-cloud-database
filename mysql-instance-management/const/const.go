@@ -17,3 +17,7 @@ const ACTION_START = "start"
 const IMAGE_TYPE_MYSQL = "mysql"
 
 const DEFAULT_CONTAINER_TYPE = "virtual-machine"
+
+const MYSQL_INSTANCE_CLUSTER_TYPE = "cluster"
+
+const MYSQL_INSTANCE_SINGLE_TYPE = "single"
