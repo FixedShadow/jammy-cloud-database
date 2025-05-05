@@ -14,6 +14,8 @@ import (
 
 var collectorList = []collectors.CollectorInterface{
 	&collectors.CPUCollector{},
+	&collectors.MemCollector{},
+	&collectors.DiskCollector{},
 }
 
 // CollectToServer start collect task

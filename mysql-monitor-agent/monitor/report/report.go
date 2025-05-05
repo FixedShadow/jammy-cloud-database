@@ -11,7 +11,6 @@ import (
 
 var DefaultInstance = NewInstance()
 
-// TODO send data to kafka.
 func SendMetricData(data *model.InputMetric) {
 	topic := config.GetMonitorConfig().Topic + getVirtualMachineName()
 	net := config.GetMonitorConfig().Net
