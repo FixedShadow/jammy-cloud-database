@@ -39,7 +39,7 @@ func getVirtualMachineName() string {
 	hostname, err := utils.Exec("hostname")
 	if err != nil {
 		logs.GetLogger().Error("exec shell cmd error", zap.Error(err))
-		return "default_host_name"
+		return "defaultHostName"
 	}
 	return strings.ReplaceAll(hostname, "-", "")
 }
