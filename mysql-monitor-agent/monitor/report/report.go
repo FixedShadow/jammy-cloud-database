@@ -8,6 +8,7 @@ import (
 	"github.com/FixedShadow/jammy-cloud-database/mysql-monitor-agent/monitor/model"
 	"github.com/FixedShadow/jammy-cloud-database/mysql-monitor-agent/utils"
 	"go.uber.org/zap"
+	"strings"
 )
 
 var DefaultInstance = NewInstance()
@@ -37,5 +38,6 @@ func SendMetricData(data *model.InputMetric) {
 }
 
 func getVirtualMachineName() string {
-	return HostName
+	vmName := strings.ReplaceAll(HostName, "-", "_")
+	return vmName
 }
