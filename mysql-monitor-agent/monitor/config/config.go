@@ -9,7 +9,16 @@ import (
 	"os"
 )
 
-var DefaultMetricDeltaDataTimeInSecond = utils.CronJobTimeSecond
+var (
+	monitorConfig                      *MonitorConfig
+	DefaultMetricDeltaDataTimeInSecond = utils.CronJobTimeSecond
+)
+
+type MonitorConfig struct {
+	Net   string
+	Url   string
+	Topic string
+}
 
 func loadConfig(confName string, conf interface{}) (interface{}, error) {
 	pwd := logs.GetCurrentDirectory()
@@ -27,4 +36,21 @@ func loadConfig(confName string, conf interface{}) (interface{}, error) {
 	}
 	logs.GetLogger().Info("Successfully loaded monitor configuration file")
 	return conf, nil
+}
+
+func GetMonitorConfig() *MonitorConfig {
+	return monitorConfig
+}
+
+func init() {
+	var ok bool
+	monitorConf, err := loadConfig(utils.ConfMonitorName, monitorConfig)
+	if err != nil {
+		logs.GetLogger().Error("open config file error")
+		panic(error2.Errors.OpenConfigFileError)
+	}
+	if monitorConfig, ok = monitorConf.(*MonitorConfig); !ok {
+		logs.GetLogger().Error("type conversion error")
+		panic(error2.Errors.CastTypeError)
+	}
 }
