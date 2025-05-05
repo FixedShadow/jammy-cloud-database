@@ -17,6 +17,8 @@ var collectorList = []collectors.CollectorInterface{
 	&collectors.CPUCollector{},
 	&collectors.MemCollector{},
 	&collectors.DiskCollector{},
+	&collectors.NetCollector{},
+	&collectors.LoadCollector{},
 }
 
 var HostName, _ = utils.Exec("hostname")
