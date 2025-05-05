@@ -13,8 +13,6 @@ import (
 
 var DefaultInstance = NewInstance()
 
-var HostName, _ = utils.Exec("hostname")
-
 func SendMetricData(data *model.InputMetric) {
 	topic := config.GetMonitorConfig().Topic + getVirtualMachineName()
 	net := config.GetMonitorConfig().Net
@@ -38,6 +36,10 @@ func SendMetricData(data *model.InputMetric) {
 }
 
 func getVirtualMachineName() string {
-	vmName := strings.ReplaceAll(HostName, "-", "_")
-	return vmName
+	hostname, err := utils.Exec("hostname")
+	if err != nil {
+		logs.GetLogger().Error("exec shell cmd error", zap.Error(err))
+		return "default_host_name"
+	}
+	return strings.ReplaceAll(hostname, "-", "_")
 }
