@@ -12,10 +12,13 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/securecookie v1.1.2 // indirect
 	github.com/gorilla/websocket v1.5.1 // indirect
+	github.com/klauspost/compress v1.18.0 // indirect
 	github.com/kr/fs v0.1.0 // indirect
 	github.com/muhlemmer/gu v0.3.1 // indirect
+	github.com/pierrec/lz4/v4 v4.1.15 // indirect
 	github.com/pkg/sftp v1.13.9 // indirect
 	github.com/pkg/xattr v0.4.10 // indirect
+	github.com/segmentio/kafka-go v0.4.47 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect
 	github.com/zitadel/logging v0.6.2 // indirect
 	github.com/zitadel/oidc/v3 v3.37.0 // indirect
