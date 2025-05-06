@@ -12,5 +12,5 @@ func NewImageService() IImageService {
 
 // TODO get image id from db.
 func (i *ImageService) GetImageIdByType(imageType string) string {
-	return "67c922efe9030a23c57dd86eccd0dfef03e54565126e79f88bb8cd9b34ecd992"
+	return "913ae47e658993fb7d5e89995ffe91b2194c14843aaa9032e69ec8737055db75"
 }
