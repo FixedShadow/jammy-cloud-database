@@ -87,11 +87,11 @@ func GetKernelPid() string {
 	return string(bys)
 }
 
-func ExecCmd(cmdStr string) error {
+func ExecCmdAsync(cmdStr string) error {
 	cmd := exec.Command("bash", "-c", cmdStr)
-	output, err := cmd.CombinedOutput()
+	err := cmd.Start()
 	if err != nil {
-		return fmt.Errorf("error : %v, output: %s", err, output)
+		return err
 	}
 	return nil
 }
