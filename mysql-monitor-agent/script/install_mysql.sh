@@ -14,7 +14,18 @@ tar -zxvf ${TAR_FILE} -C ${WD_HOME}
 
 mv /${WD_HOME}/mysql-5.7.20-linux-glibc2.12-x86_64 ${MYSQL_DIR}
 
+
+
+groupadd mysql
+
+useradd -r -g mysql mysql
+
+chown -R mysql ${MYSQL_DIR}
+chgrp -R mysql ${MYSQL_DIR}
+
 mkdir -p ${MYSQL_DATA_DIR}
+
+chown -R mysql:mysql ${MYSQL_DATA_DIR}
 
 cd ${MYSQL_DIR}
 
