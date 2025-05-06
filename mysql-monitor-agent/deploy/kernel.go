@@ -45,8 +45,6 @@ func RunKernel() {
 		logs.GetLogger().Error("run mysql kernel error", zap.Error(err))
 		panic(err)
 	}
-	pid := utils.GetKernelPid()
-	logs.GetLogger().Info("The mysql process has been started", zap.String("mysql_pid", pid))
 }
 
 // TODO upgrade agent
