@@ -9,8 +9,7 @@ TAR_FILE=/opt/mysql-5.7.20-linux-glibc2.12-x86_64.tar.gz
 WD_HOME=/opt
 MYSQL_DIR=/opt/mysql
 MYSQL_DATA_DIR=/opt/mysql/data
-MYSQL_LOG_DIR=/var/log/mysql
-MYSQL_RUN_DIR=/var/run/mysqld
+
 
 tar -zxvf ${TAR_FILE} -C ${WD_HOME}
 
@@ -18,18 +17,12 @@ mv /${WD_HOME}/mysql-5.7.20-linux-glibc2.12-x86_64 ${MYSQL_DIR}
 
 groupadd mysql
 
-useradd -r -g mysql mysql
+useradd -r -g mysql -s /bin/false mysql
 
-chown -R mysql ${MYSQL_DIR}
-chgrp -R mysql ${MYSQL_DIR}
+chown -R mysql:mysql ${MYSQL_DIR}
 
 mkdir -p ${MYSQL_DATA_DIR}
-mkdir -p ${MYSQL_LOG_DIR}
-mkdir -p ${MYSQL_RUN_DIR}
 
-chown -R mysql:mysql ${MYSQL_DATA_DIR}
-chown -R mysql:mysql ${MYSQL_LOG_DIR}
-chown -R mysql:mysql ${MYSQL_RUN_DIR}
 
 cd ${MYSQL_DIR}
 
@@ -38,12 +31,20 @@ bin/mysqld --initialize --user=mysql --basedir=${MYSQL_DIR} --datadir=${MYSQL_DA
 # 生成临时密码
 bin/mysql_ssl_rsa_setup  --datadir=${MYSQL_DATA_DIR}
 
+# 启动mysql
+/opt/mysql/support-files/mysql.server start
+
+# 设置mysql自启动
 cp ${MYSQL_DIR}/support-files/mysql.server /etc/init.d/mysql
 
-chown -R mysql:mysql /etc/init.d/mysql
+chmod +x /etc/init.d/mysql
 
-# 启动mysql
-/etc/init.d/mysql start
+chkconfig --add mysql
+
+chkconfig mysql on
+
+
+
 
 
 
