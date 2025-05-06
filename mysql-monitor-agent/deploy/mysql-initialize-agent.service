@@ -1,0 +1,10 @@
+[Unit]
+Description=mysql-initialize-agent
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/mysql-monitor-agent/mysql-monitor-agent init
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
