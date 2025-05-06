@@ -41,7 +41,7 @@ func (i *ContainerService) CreateContainer(ctx context.Context, containerSpecs m
 	instance.Devices = map[string]map[string]string{
 		"root": {
 			"path": "/",
-			"pool": "default",
+			"pool": "new-storage-dir",
 			"size": strconv.Itoa(containerSpecs.DiskSize) + constant.GB,
 			"type": "disk",
 		},

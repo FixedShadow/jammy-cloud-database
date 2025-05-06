@@ -34,24 +34,24 @@ func CreateVmInstance() {
 		panic(err)
 	}
 	instance := api.InstancesPost{}
-	instance.Name = "my-vm-100"
+	instance.Name = "test-mysql-instance01"
 	instance.Type = "virtual-machine"
 	instance.Devices = map[string]map[string]string{
 		"root": {
 			"path": "/",
-			"pool": "default",
+			"pool": "new-storage-dir",
 			"size": "12GiB",
 			"type": "disk",
 		},
 	}
 	instance.Config = map[string]string{
-		"limits.cpu":    "1",
+		"limits.cpu":    "2",
 		"limits.memory": "2GiB",
 	}
 	instance.Source = api.InstanceSource{
 		Type:        "image",
-		BaseImage:   "67c922efe9030a23c57dd86eccd0dfef03e54565126e79f88bb8cd9b34ecd992", //image fingerprint
-		Fingerprint: "67c922efe9030a23c57dd86eccd0dfef03e54565126e79f88bb8cd9b34ecd992", //image fingerprint
+		BaseImage:   "913ae47e658993fb7d5e89995ffe91b2194c14843aaa9032e69ec8737055db75", //image fingerprint
+		Fingerprint: "913ae47e658993fb7d5e89995ffe91b2194c14843aaa9032e69ec8737055db75", //image fingerprint
 	}
 	op, err := instanceServer.CreateInstance(instance)
 	if err != nil {
@@ -65,16 +65,16 @@ func CreateVmInstance() {
 	if err != nil {
 		panic(err)
 	}
-	//state := api.InstanceStatePut{
-	//	Action:  "start",
-	//	Timeout: -1,
-	//}
-	//op, err = instanceServer.UpdateInstanceState(instance.Name, state, "")
-	//if err != nil {
-	//	panic(err)
-	//}
-	//err = op.Wait() //wait for the operation to complete.
-	//if err != nil {
-	//	panic(err)
-	//}
+	state := api.InstanceStatePut{
+		Action:  "start",
+		Timeout: -1,
+	}
+	op, err = instanceServer.UpdateInstanceState(instance.Name, state, "")
+	if err != nil {
+		panic(err)
+	}
+	err = op.Wait() //wait for the operation to complete.
+	if err != nil {
+		panic(err)
+	}
 }
