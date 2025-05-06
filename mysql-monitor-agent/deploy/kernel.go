@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/FixedShadow/jammy-cloud-database/mysql-monitor-agent/logs"
 	"github.com/FixedShadow/jammy-cloud-database/mysql-monitor-agent/monitor/config"
+	"github.com/FixedShadow/jammy-cloud-database/mysql-monitor-agent/utils"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
 	"go.uber.org/zap"
@@ -34,7 +35,13 @@ func DownloadKernel() {
 
 // RunKernel start the mysql kernel.
 func RunKernel() {
-
+	_, err := utils.Exec("bash install_mysql.sh")
+	if err != nil {
+		logs.GetLogger().Error("run mysql kernel error", zap.Error(err))
+		panic(err)
+	}
+	pid := utils.GetKernelPid()
+	logs.GetLogger().Info("The mysql process has been started", zap.String("mysql_pid", pid))
 }
 
 // TODO upgrade agent

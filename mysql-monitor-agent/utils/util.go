@@ -77,3 +77,12 @@ func ExecWithTimeOut(cmdStr string, timeout time.Duration) (string, error) {
 func Exec(cmdStr string) (string, error) {
 	return ExecWithTimeOut(cmdStr, 20*time.Second)
 }
+
+func GetKernelPid() string {
+	bys, err := os.ReadFile(KernelPidFile)
+	if err != nil {
+		logs.GetLogger().Error("read pid error", zap.String("pid_file", KernelPidFile))
+		return ""
+	}
+	return string(bys)
+}
