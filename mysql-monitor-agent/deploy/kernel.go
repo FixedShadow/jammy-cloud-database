@@ -17,10 +17,15 @@ var (
 
 func init() {
 	StorageConf = config.GetMonitorConfig()
-	OSSClient, _ = minio.New(StorageConf.Endpoint, &minio.Options{
+	var err error
+	OSSClient, err = minio.New(StorageConf.Endpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(StorageConf.Storage.AccessKeyId, StorageConf.Storage.SecretAccessKey, ""),
 		Secure: false,
 	})
+	if err != nil {
+		logs.GetLogger().Error("init oss client error", zap.Error(err))
+		panic(err)
+	}
 }
 
 // DownloadKernel download the tar from oss
