@@ -27,12 +27,12 @@ touch ${MYSQL_DIR}/logs/error.log
 
 chown -R mysql:mysql ${MYSQL_DIR}
 
-cd ${MYSQL_DIR}
 
-bin/mysqld --initialize --user=mysql --basedir=${MYSQL_DIR} --datadir=${MYSQL_DATA_DIR}
+
+${MYSQL_DIR}/bin/mysqld --initialize --user=mysql --basedir=${MYSQL_DIR} --datadir=${MYSQL_DATA_DIR}
 
 # 生成临时密码
-bin/mysql_ssl_rsa_setup  --datadir=${MYSQL_DATA_DIR}
+${MYSQL_DIR}/bin/mysql_ssl_rsa_setup  --datadir=${MYSQL_DATA_DIR}
 
 # 启动mysql
 /opt/mysql/support-files/mysql.server start
