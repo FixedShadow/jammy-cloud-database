@@ -8,6 +8,7 @@ import (
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
 	"go.uber.org/zap"
+	"os"
 )
 
 var (
@@ -30,7 +31,11 @@ func init() {
 
 // DownloadKernel download the tar from oss
 func DownloadKernel() {
-	err := OSSClient.FGetObject(context.Background(), StorageConf.Storage.KernelBucket,
+	_, err := os.Stat("/opt/mysql")
+	if err == nil {
+		return
+	}
+	err = OSSClient.FGetObject(context.Background(), StorageConf.Storage.KernelBucket,
 		StorageConf.Storage.KernelTarFile, StorageConf.Storage.DownloadPath, minio.GetObjectOptions{})
 	if err != nil {
 		logs.GetLogger().Error("cannot download the kernel packages", zap.Error(err))

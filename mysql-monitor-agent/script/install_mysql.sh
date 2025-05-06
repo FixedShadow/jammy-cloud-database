@@ -20,6 +20,7 @@ if [ -d ${MYSQL_DIR} ]; then
     exit 0
   else
     /opt/mysql/support-files/mysql.server start
+    exit 0
   fi
 fi
 
