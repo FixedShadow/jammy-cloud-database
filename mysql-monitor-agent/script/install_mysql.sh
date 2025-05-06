@@ -9,12 +9,12 @@ TAR_FILE=/opt/mysql-5.7.20-linux-glibc2.12-x86_64.tar.gz
 WD_HOME=/opt
 MYSQL_DIR=/opt/mysql
 MYSQL_DATA_DIR=/opt/mysql/data
+MYSQL_LOG_DIR=/var/log/mysql
+MYSQL_RUN_DIR=/var/run/mysqld
 
 tar -zxvf ${TAR_FILE} -C ${WD_HOME}
 
 mv /${WD_HOME}/mysql-5.7.20-linux-glibc2.12-x86_64 ${MYSQL_DIR}
-
-
 
 groupadd mysql
 
@@ -26,6 +26,8 @@ chgrp -R mysql ${MYSQL_DIR}
 mkdir -p ${MYSQL_DATA_DIR}
 
 chown -R mysql:mysql ${MYSQL_DATA_DIR}
+chown -R mysql:mysql ${MYSQL_LOG_DIR}
+chown -R mysql:mysql ${MYSQL_RUN_DIR}
 
 cd ${MYSQL_DIR}
 
