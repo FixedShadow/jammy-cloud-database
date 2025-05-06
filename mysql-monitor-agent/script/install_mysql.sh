@@ -39,7 +39,7 @@ ${MYSQL_DIR}/bin/mysql_ssl_rsa_setup  --datadir=${MYSQL_DATA_DIR}
 
 cat ${MYSQL_DIR}/logs/error.log |grep "temporary password" |awk '{print $NF}' >> ${MYSQL_DIR}/tmp_password.txt
 
-
+chown -R mysql:mysql ${MYSQL_DIR}
 
 
 
