@@ -15,6 +15,7 @@ var (
 )
 
 type Storage struct {
+	Endpoint        string `json:"endpoint"`
 	KernelBucket    string `json:"kernel_bucket"`
 	AgentBucket     string `json:"agent_bucket"`
 	AccessKeyId     string `json:"access_key_id"`
@@ -25,11 +26,10 @@ type Storage struct {
 }
 
 type MonitorConfig struct {
-	Net      string  `json:"net"`
-	Url      string  `json:"url"`
-	Topic    string  `json:"topic"`
-	Endpoint string  `json:"endpoint"`
-	Storage  Storage `json:"storage"`
+	Net     string  `json:"net"`
+	Url     string  `json:"url"`
+	Topic   string  `json:"topic"`
+	Storage Storage `json:"storage"`
 }
 
 func loadConfig(confName string, conf interface{}) (interface{}, error) {

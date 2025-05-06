@@ -18,7 +18,7 @@ var (
 func init() {
 	StorageConf = config.GetMonitorConfig()
 	var err error
-	OSSClient, err = minio.New(StorageConf.Endpoint, &minio.Options{
+	OSSClient, err = minio.New(StorageConf.Storage.Endpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(StorageConf.Storage.AccessKeyId, StorageConf.Storage.SecretAccessKey, ""),
 		Secure: false,
 	})
