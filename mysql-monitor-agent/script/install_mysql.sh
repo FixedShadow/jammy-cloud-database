@@ -24,6 +24,8 @@ chown -R mysql ${MYSQL_DIR}
 chgrp -R mysql ${MYSQL_DIR}
 
 mkdir -p ${MYSQL_DATA_DIR}
+mkdir -p ${MYSQL_LOG_DIR}
+mkdir -p ${MYSQL_RUN_DIR}
 
 chown -R mysql:mysql ${MYSQL_DATA_DIR}
 chown -R mysql:mysql ${MYSQL_LOG_DIR}
@@ -37,6 +39,8 @@ bin/mysqld --initialize --user=mysql --basedir=${MYSQL_DIR} --datadir=${MYSQL_DA
 bin/mysql_ssl_rsa_setup  --datadir=${MYSQL_DATA_DIR}
 
 cp ${MYSQL_DIR}/support-files/mysql.server /etc/init.d/mysql
+
+chown -R mysql:mysql /etc/init.d/mysql
 
 # 启动mysql
 /etc/init.d/mysql start
