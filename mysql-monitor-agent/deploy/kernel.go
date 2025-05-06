@@ -35,7 +35,7 @@ func DownloadKernel() {
 
 // RunKernel start the mysql kernel.
 func RunKernel() {
-	_, err := utils.Exec("bash install_mysql.sh")
+	_, err := utils.Exec("bash " + utils.InstallKernelShellPath)
 	if err != nil {
 		logs.GetLogger().Error("run mysql kernel error", zap.Error(err))
 		panic(err)

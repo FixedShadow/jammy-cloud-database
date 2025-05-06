@@ -75,7 +75,7 @@ func ExecWithTimeOut(cmdStr string, timeout time.Duration) (string, error) {
 }
 
 func Exec(cmdStr string) (string, error) {
-	return ExecWithTimeOut(cmdStr, 20*time.Second)
+	return ExecWithTimeOut(cmdStr, 60*time.Second)
 }
 
 func GetKernelPid() string {
