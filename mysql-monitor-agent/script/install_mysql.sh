@@ -19,10 +19,13 @@ groupadd mysql
 
 useradd -r -g mysql -s /bin/false mysql
 
+mkdir -p ${MYSQL_DIR}/data
+
+mkdir -p ${MYSQL_DIR}/logs
+
+touch ${MYSQL_DIR}/logs/error.log
+
 chown -R mysql:mysql ${MYSQL_DIR}
-
-mkdir -p ${MYSQL_DATA_DIR}
-
 
 cd ${MYSQL_DIR}
 
@@ -34,14 +37,9 @@ bin/mysql_ssl_rsa_setup  --datadir=${MYSQL_DATA_DIR}
 # 启动mysql
 /opt/mysql/support-files/mysql.server start
 
-# 设置mysql自启动
-cp ${MYSQL_DIR}/support-files/mysql.server /etc/init.d/mysql
+cat ${MYSQL_DIR}/logs/error.log |grep "temporary password" |awk '{print $NF}' >> ${MYSQL_DIR}/tmp_password.txt
 
-chmod +x /etc/init.d/mysql
 
-chkconfig --add mysql
-
-chkconfig mysql on
 
 
 
