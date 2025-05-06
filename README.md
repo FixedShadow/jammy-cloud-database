@@ -45,6 +45,23 @@
 - 实例每秒IO次数
 - 慢查询（查询时间超过long_qurey_time秒的查询个数）
 
+
+下图演示为直接调用创建实例接口，mysql实例被创建，且实例开始自动拉起mysql进程，并实现自动上报监控指标等。
+
+**创建实例结果演示：**
+
+![接口请求](./api.png)
+
+查看到实例创建成功，名字为：mysql-f721622e16
+
+![实例](./instance.png)
+
+登录到实例内部：查看到mysql进程内核已启动：
+
+![内核进程](./kernel.png)
+
+
 **mysql-monitor-agent 上报指标效果展示：**
 
-![指标截图](./kafka-metric.png)
+![指标](./metric.png)
+
